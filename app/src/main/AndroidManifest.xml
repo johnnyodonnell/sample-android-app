@@ -12,13 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleApp"
         tools:targetApi="31">
+        <service
+            android:name=".DataService"
+            android:enabled="true"
+            android:exported="false"></service>
+
         <receiver
             android:name=".LoggerReceiver"
             android:enabled="true"
             android:exported="false">
-            <!--
-            Works for API version 25 and below
-            -->
+
+            <!-- Works for API version 25 and below -->
             <intent-filter>
                 <action android:name="com.johnnyodonnell.log" />
             </intent-filter>

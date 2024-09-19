@@ -1,4 +1,8 @@
 
+* From https://developer.android.com/develop/background-work/services#Declaring
+    - "Beginning with Android 5.0 (API level 21), the system throws an
+        exception if you call bindService() with an implicit intent."
+
 * From https://developer.android.com/develop/background-work/background-tasks/broadcasts
     - "If your app targets API level 26 or higher, you cannot use the
         manifest to declare a receiver for implicit broadcasts

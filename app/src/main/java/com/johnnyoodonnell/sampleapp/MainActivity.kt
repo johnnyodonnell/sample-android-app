@@ -1,8 +1,12 @@
 package com.johnnyoodonnell.sampleapp
 
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.Handler
+import android.os.IBinder
 import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
@@ -53,6 +57,29 @@ class MainActivity : AppCompatActivity() {
                 sendBroadcast(intent)
             }
         }
+
+        val callServiceButton = findViewById<Button>(R.id.callService)
+        callServiceButton.setOnClickListener {
+            // Example from:
+            // https://developer.android.com/develop/background-work/services/bound-services
+            val connection = object: ServiceConnection {
+                override fun onServiceConnected(
+                    name: ComponentName?,
+                    service: IBinder?
+                ) {
+                    val binder = service as DataService.DataBinder
+                    val data = binder.getData()
+                    println("Data received from service: " + data)
+                }
+
+                override fun onServiceDisconnected(name: ComponentName?) {
+                    TODO("Not yet implemented")
+                }
+            }
+            val intent = Intent(this, DataService::class.java)
+            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars =
