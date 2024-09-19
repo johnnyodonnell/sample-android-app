@@ -38,6 +38,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, HealthActivity::class.java))
         }
 
+        val sendBroadcastButton = findViewById<Button>(R.id.sendBroadcast)
+        sendBroadcastButton.setOnClickListener {
+            println("Sending broadcast intent")
+            Intent(this, LoggerReceiver::class.java).also { intent ->
+                intent.setAction("com.johnnyodonnell.log")
+                intent.putExtra("logEntry", "Sent from explicit intent")
+                sendBroadcast(intent)
+            }
+            // Works for API version 25 and below
+            Intent().also { intent ->
+                intent.setAction("com.johnnyodonnell.log")
+                intent.putExtra("logEntry", "Sent from implicit intent")
+                sendBroadcast(intent)
+            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars =
                 insets.getInsets(WindowInsetsCompat.Type.systemBars())

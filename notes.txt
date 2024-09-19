@@ -1,4 +1,14 @@
 
+* From https://developer.android.com/develop/background-work/background-tasks/broadcasts
+    - "If your app targets API level 26 or higher, you cannot use the
+        manifest to declare a receiver for implicit broadcasts
+        (broadcasts that do not target your app specifically), except
+        for a few implicit broadcasts that are exempted from that
+        restriction.
+    - It lists a number of action values that are exempt but I could
+        not get these actions to work with API version 35. I could
+        get these to work with API version 24.
+
 * From https://developer.android.com/reference/android/content/Intent
     - An intent is an abstract description of an operation to be performed.
         It can be used with `startActivity` to launch an `Activity`,
