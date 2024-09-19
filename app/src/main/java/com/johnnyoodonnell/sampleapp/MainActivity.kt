@@ -1,5 +1,6 @@
 package com.johnnyoodonnell.sampleapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
             h.postDelayed({
                 tv.text = "Welcome to main page!"
             }, 2000)
+        }
+
+        val openNewViewButton = findViewById<Button>(R.id.openNewViewButton)
+        openNewViewButton.setOnClickListener {
+            startActivity(Intent(this, HealthActivity::class.java))
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
